@@ -4,8 +4,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-let clearBtn;
-
+console.log('hello world')
 if (window.location.pathname === '/notes') {
   noteForm = document.querySelector('.note-form');
   noteTitle = document.querySelector('.note-title');
@@ -30,7 +29,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/notes.html', {
+  fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -105,7 +104,7 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  activeNote = JSON.parse(e.target.closest('li').dataset.note);
+  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
 
@@ -190,6 +189,7 @@ if (window.location.pathname === '/notes') {
   newNoteBtn.addEventListener('click', handleNewNoteView);
   clearBtn.addEventListener('click', renderActiveNote);
   noteForm.addEventListener('input', handleRenderBtns);
+  noteForm.addEventListener('input', console.log('hello world -1'));
 }
 
 getAndRenderNotes();
